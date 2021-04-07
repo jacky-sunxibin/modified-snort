@@ -1,9 +1,0 @@
-#alert tcp any any <> any 25 (msg:" mailbomb dos attack"; before100SameDstHostServiceSessions:>=100;classtype:attempted-dos; sid:80018; rev:1)
-#alert tcp any any -> any any (msg:" test detection filter keyword"; detection_filter:track by_dst, count 29, seconds 2;classtype:attempted-dos; sid:80018; rev:1)
-#alert tcp any any -> any any (msg:" test detection filter keyword"; twoSecondsSameDstHostSessions:>=29;classtype:attempted-dos; sid:80018; rev:1)
-#alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";flags:A+;flow:established;detection_filter:track by_dst,count 100,seconds 60;sid:1000003;rev:001;)
-#alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";before100SameDstHostServiceSessions:>=100;sid:1000003;rev:001;)
-#alert tcp any any -> any any (msg:" test detection filter keyword";twoSecondsSameDstHostSessions:>=1;classtype:attempted-dos; sid:80018; rev:1)
-
-alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";sid:1000003;rev:001;)
-#alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";before100SameDstHostServiceSessions:>=200;sid:1000003;rev:001;)
