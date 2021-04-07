@@ -1,0 +1,13 @@
+#alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";flags:A+;flow:established;detection_filter:track by_dst,count 100,seconds 2;sid:1000003;rev:001;)
+alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";before100SameDstHostServiceSessions:>=100;sid:1000003;rev:001;)
+
+#alert tcp any any -> any 25 (msg:"Possible Mail Bomb attack";flags:A+;flow:established;detection_filter:track by_dst,count 100,seconds 2;sid:1000003;rev:001;)
+#alert icmp any any <> any any (msg:"smurf dos attack";before100SameDstHostSourcePortRate:>=1;twoSecondsSameDstHostSessions:>=511;classtype:attempted-dos; sid:80004;rev:1)
+#alert icmp any any <> any any (msg:"smurf dos attack";before100SameDstHostSourcePortRate:>=0;classtype:attempted-dos; sid:80004;rev:1)
+#alert icmp any any <> any any (msg:"smurf dos attack";classtype:attempted-dos; sid:80004;rev:1)
+
+#alert tcp any any -> any any (msg:"Possible Mail Bomb attack";sid:1000003;rev:001;)
+#alert tcp any any -> any any (msg:"Possible Mail Bomb attack";twoSecondsSameDstHostSessions:>=0;sid:1000003;rev:001;)
+
+#alert udp any any -> any any (msg:"Possible Mail Bomb attack";sid:1000003;rev:001;)
+#alert udp any any -> any any (msg:"Possible Mail Bomb attack";twoSecondsSameDstHostSessions:>=0;sid:1000003;rev:001;)

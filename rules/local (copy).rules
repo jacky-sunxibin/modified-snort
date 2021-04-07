@@ -1,0 +1,8 @@
+#alert ip any any <> any any (msg:"our rule alert: DOS Teardrop attack";overlapfragment; classtype:attempted-dos; sid:270001; rev:6;) 
+#alert udp any any <> any any (msg:"default Snort alert:DOS Teardrop attack";fragbits:M; classtype:attempted-dos; sid:270000; rev:6;)
+#alert tcp any any <> any any (msg:"default snort alert:DDOS shaft synflood"; flow:stateless; flags:S,12;classtype:attempted-dos; sid:270002; rev:10;)
+#alert tcp any any <> any any (msg:"our rule alert:neptune  dos atack";twoSecondsSameDstHostServiceRate:>=1;sessionFlags:S0,REJ,RST0;twoSecondsSameDstHostSessions:>=302;classtype:attempted-dos; sid:270003; rev:1)
+#alert icmp any any <> any any (msg:"our rule alert:smurf dos attack";twoSecondsSameDstHostSessions:>=511;classtype:attempted-dos; sid:270004; rev:1)
+#alert tcp any any <> any any (msg:"our rule alert:apache2 dos  attack";before100SameDstHostServiceSynErrorRate:>=0.84;twoSecondsSameDstHostSessions:>=130;duration:>=2200;classtype:attempted-dos; sid:270005; rev:2;)
+#alert tcp any any <> any any (msg:"our rule alert:processtable dos attack";before100SameDstHostServiceSynErrorRate:>=0.84;duration:>=8000;srcBytes:0;classtype:attempted-dos; sid:80008; rev:2;)
+#alert tcp any any <> any 25 (msg:"our rule alert:mailbomb dos attack";before100SameDstHostSessions:>=100;srcBytes:>=2599;classtype:attempted-dos; sid:80009; rev:2;)
