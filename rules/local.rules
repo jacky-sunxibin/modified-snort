@@ -4,5 +4,5 @@ alert icmp any any <> any any (msg:"smurf dos attack";before100SameDstHostSource
 alert tcp any any <> any any (msg:"neptune same server dos atack";twoSecondsSameDstHostServiceRate:>=1;sessionFlags:S0,REJ,RST0;twoSecondsSameDstHostSessions:>=302;classtype:attempted-dos; sid:80009; rev:1)
 alert tcp any any <> any any (msg:" neptune diff server dos attack";sessionFlags:S0,RGJ,RST0;twoSecondsSameDstHostSessions :>=302; twoSecondsSameDstHostDiffServiceRate:>=1; classtype:attempted-dos; sid:80012; rev:1)
 alert tcp any any <> any 80 (msg:"apache2 attack dos attack "; twoSecondsSameDstServiceSynErrorRate:>=1;before100SameDstHostServiceSynErrorRate:>=0.84;duration:>=785;classtype:attempted-dos; sid:80015; rev:1)
-alert tcp any any <> any 25 (msg:" mailbomb dos attack"; before100SameDstHostServiceSessions:>=1002;classtype:attempted-dos; sid:80018; rev:1)
+alert tcp any any <> any 25 (msg:" mailbomb dos attack"; twoSecondsSameDstServiceSessions:>=247;classtype:attempted-dos; sid:80018; rev:1)
 alert tcp any any <> any 23 (msg:"processtable dos attack ";before100SameDstHostServiceSynErrorRate:>=0.84;duration:>=8233;classtype:attempted-dos; sid:80021;rev:1)
